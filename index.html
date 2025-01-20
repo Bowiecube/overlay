@@ -38,13 +38,8 @@
 
     <script>
        async function updateProgress() {
-    try {
-        const response = await fetch('https://api.justgiving.com/v3/team/they-call-it-a-mineblast');
-
-        if (!response.ok) {
-            console.error(`Error: ${response.status} ${response.statusText}`);
-            return;
-        }
+    
+        const response = await fetch('https://api.justgiving.com/39325169/v1/teams/v3/they-call-it-a-mineblast');
 
         const data = await response.json();
         const totalRaised = data.totalRaised || 0;
@@ -55,11 +50,6 @@
         document.getElementById('goal').innerText = goal.toLocaleString();
         document.getElementById('percentage').innerText = percentage;
         document.getElementById('progress-fill').style.width = percentage + '%';
-
-        console.log('Data updated successfully', data);
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
 }
 
 // Set up refresh button to manually fetch data
