@@ -39,11 +39,17 @@
     <script>
        async function updateProgress() {
     
-        const response = await fetch('https://api.justgiving.com/39325169/v1/teams/v3/they-call-it-a-mineblast');
-
-        const data = await response.json();
-        const totalRaised = data.totalRaised || 0;
-        const goal = data.fundraisingTarget || 1000;
+        const response = await fetch('https://api.justgiving.com/39325169/v1/teamsv3/seafarinspartans',{
+		headers:{
+			'Content-Type': 'application/json',
+			}
+		});	
+        console.log(response);
+		const data = await response.json();
+		//console.log(JSON.stringify(data, null, 2));
+        const totalRaised = data.donationSummary.totalAmount || 0;
+        console.log("amount:" + data.donationSummary.totalAmount)
+		const goal = data.fundraisingTarget || 1000;
         const percentage = Math.min((totalRaised / goal) * 100, 100).toFixed(2);
 
         document.getElementById('total-raised').innerText = totalRaised.toLocaleString();
